@@ -1223,58 +1223,35 @@ public class ImageEditor extends Activity implements OnTouchListener, OnClickLis
 	@Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-    	switch (item.getItemId()) {
-    	
-    		case R.id.menu_new_region:
-    			
-    			newDefaultRegion();
-
-    			return true;
-    			
-        	case R.id.menu_save:
-
-				//Why does this not show?
-		    	mProgressDialog = ProgressDialog.show(this, "", "Saving...", true, true);
-	
-        		mHandler.postDelayed(new Runnable() {
-        			  @Override
-        			  public void run() {
-        			    // this will be done in the Pipeline Thread
-        	        		saveImage();
-        			  }
-        			},500);
-
-        		
-        		return true;
-        		
-        	case R.id.menu_share:
-        		// Share Image
-          		shareImage();
-
-        		
-        		return true;
-        	
-/*
- 			case R.id.menu_delete_original:
-        		// Delete Original Image
-        		handleDelete();
-        		
-        		return true;
-*/        		
-        	case R.id.menu_about:
-        		// Pull up about screen
-        		displayAbout();
-        		
-        		return true;
-        	
-        	case R.id.menu_preview:
-        		showPreview();
-        		
-        		return true;
-        		
-    		default:
-    			return false;
-    	}
+    	int itemId = item.getItemId();
+		if (itemId == R.id.menu_new_region) {
+			newDefaultRegion();
+			return true;
+		} else if (itemId == R.id.menu_save) {
+			//Why does this not show?
+			mProgressDialog = ProgressDialog.show(this, "", "Saving...", true, true);
+			mHandler.postDelayed(new Runnable() {
+				  @Override
+				  public void run() {
+				    // this will be done in the Pipeline Thread
+			    		saveImage();
+				  }
+				},500);
+			return true;
+		} else if (itemId == R.id.menu_share) {
+			// Share Image
+			shareImage();
+			return true;
+		} else if (itemId == R.id.menu_about) {
+			// Pull up about screen
+			displayAbout();
+			return true;
+		} else if (itemId == R.id.menu_preview) {
+			showPreview();
+			return true;
+		} else {
+			return false;
+		}
     }
     	
 	/*

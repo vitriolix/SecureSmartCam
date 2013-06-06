@@ -1161,64 +1161,39 @@ public class VideoEditor extends Activity implements
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-    	switch (item.getItemId()) {
-    	
-    		case R.id.menu_new_region:
-    			
-    			//beginAutoDetect();
-    			/*
-    			ObscureRegion region = makeNewRegion(mediaPlayer.getCurrentPosition(),(float)videoWidth/2,(float)videoHeight/2,null,0);
-    			activeRegionTrail = new RegionTrail(0,mDuration);
-				obscureTrails.add(activeRegionTrail);
-				activeRegionTrail.addRegion(region);
-				updateRegionDisplay(mediaPlayer.getCurrentPosition());
-				*/
-    			showAutoDetectDialog();
-    			
-    			return true;
-    			
-        	case R.id.menu_save:
-
-        		completeActionFlag = 3;
-        		processVideo();
-        		
-        		return true;   
-        		
-        	case R.id.menu_prefs:
-
-        		showPrefs();
-        		
-        		return true;  
-        	
-        	case R.id.menu_clear_regions:
-        		
-        		obscureTrails.clear();
-        		
-        		updateRegionDisplay(mediaPlayer.getCurrentPosition());
-        		
-        		return true;
-        		
-/*
- 			case R.id.menu_delete_original:
-        		// Delete Original Image
-        		handleDelete();
-        		
-        		return true;
-*/        		
-        	case R.id.menu_about:
-        		// Pull up about screen
-        		displayAbout();
-        		
-        		return true;
-        	
-        	case R.id.menu_preview:
-        		playVideo();
-        		
-        		return true;
-        		
-    		default:
-    			return false;
-    	}
+    	int itemId = item.getItemId();
+		if (itemId == R.id.menu_new_region) {
+			//beginAutoDetect();
+			/*
+			ObscureRegion region = makeNewRegion(mediaPlayer.getCurrentPosition(),(float)videoWidth/2,(float)videoHeight/2,null,0);
+			activeRegionTrail = new RegionTrail(0,mDuration);
+			obscureTrails.add(activeRegionTrail);
+			activeRegionTrail.addRegion(region);
+			updateRegionDisplay(mediaPlayer.getCurrentPosition());
+			*/
+			showAutoDetectDialog();
+			return true;
+		} else if (itemId == R.id.menu_save) {
+			completeActionFlag = 3;
+			processVideo();
+			return true;
+		} else if (itemId == R.id.menu_prefs) {
+			showPrefs();
+			return true;
+		} else if (itemId == R.id.menu_clear_regions) {
+			obscureTrails.clear();
+			updateRegionDisplay(mediaPlayer.getCurrentPosition());
+			return true;
+		} else if (itemId == R.id.menu_about) {
+			// Pull up about screen
+			displayAbout();
+			return true;
+		} else if (itemId == R.id.menu_preview) {
+			playVideo();
+			return true;
+		} else {
+			return false;
+		}
     }
 
     /*
